@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 
 import logger from './middleware/logger.middleware';
+import usersRoute from './users/users.routes';
 
 import cors from 'cors';
 import helmet from 'helmet';
@@ -40,7 +41,7 @@ app.get('/', (req: Request, res: Response) => {   // this is what we imported (R
 });
 
 //this is middleware
-//app.use('/', [albumsRouter, artistsRouter]);
+app.use('/', [usersRoute]);
 
 app.listen(port, () => {
     //this is just logging the port to the console
