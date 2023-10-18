@@ -1,22 +1,15 @@
 import { Request, RequestHandler, Response } from 'express';
 import { Product } from './products.model';
+import * as ProductsDAO from './products.dao'
+import { OkPacket } from 'mysql';
 
 
 export const readAllProducts: RequestHandler =async (req:Request, res: Response) => 
 {
-    let testProduct: Product = {
-        productId: 1,
-        name: 'cake',
-        calories: 2000,
-        ingredients: 'flower',
-        price: 200,
-        qty: 1
-    }
     try{
+        let albums = await  ProductsDAO.readAllProducts()
         res.status(200).json(
-            {
-                testProduct
-            }
+            albums
         );
     }
     catch(error){
@@ -30,8 +23,9 @@ export const readAllProducts: RequestHandler =async (req:Request, res: Response)
 export const searchProductsByName: RequestHandler =async (req:Request, res: Response) => 
 {
     try{
+        let albums = await ProductsDAO.searchForProducts("%" + req.params.search + "%");
         res.status(200).json(
-            req.params.search
+            albums
         );
     }
     catch(error){
@@ -45,8 +39,10 @@ export const searchProductsByName: RequestHandler =async (req:Request, res: Resp
 export const createProduct: RequestHandler =async (req:Request, res: Response) => 
 {
     try{
+        const okPacket: OkPacket = await ProductsDAO.createProduct(req.body);
+        console.log(okPacket);
         res.status(200).json(
-            req.body
+            okPacket
         );
     }
     catch(error){
@@ -59,8 +55,10 @@ export const createProduct: RequestHandler =async (req:Request, res: Response) =
 export const updateProduct: RequestHandler =async (req:Request, res: Response) => 
 {
     try{
+        const okPacket: OkPacket = await ProductsDAO.updateProduct(req.body);
+        console.log(okPacket);
         res.status(200).json(
-            req.body
+            okPacket
         );
     }
     catch(error){
@@ -74,8 +72,10 @@ export const updateProduct: RequestHandler =async (req:Request, res: Response) =
 export const deleteProduct: RequestHandler =async (req:Request, res: Response) => 
 {
     try{
+        const okPacket: OkPacket = await ProductsDAO.deleteProduct(req.params.productID);
+        console.log(okPacket);
         res.status(200).json(
-            req.params.productID
+            okPacket
         );
     }
     catch(error){
@@ -86,3 +86,15 @@ export const deleteProduct: RequestHandler =async (req:Request, res: Response) =
     }
 }
 
+export const getCart: RequestHandler =async (req:Request, res: Response) => 
+{
+    try{
+        //get all the products for a cart associated with our user 
+    }
+    catch(error){
+        console.error("product.controller|getCart|ERROR", error);
+        res.status(500).json({
+            message:'there was an Error when getting the cart'
+        });
+    }
+} 
