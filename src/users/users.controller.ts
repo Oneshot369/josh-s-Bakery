@@ -72,10 +72,7 @@ export const readUsersByUsernameAndPassword: RequestHandler =async (req:Request,
 {
     try{
         res.status(200).json(
-            {
-                username: req.params.username,
-                password: req.params.password
-            }
+            req.body
         );
     }
     catch(error){
@@ -119,7 +116,7 @@ export const deleteUser: RequestHandler =async (req:Request, res: Response) =>
 {
     try{
         res.status(200).json(
-            req.body
+            req.params.userID
         );
     }
     catch(error){

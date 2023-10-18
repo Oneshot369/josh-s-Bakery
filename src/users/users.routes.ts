@@ -8,18 +8,18 @@ router
     .get(UserController.readUsers);
 //get one user
 router
-    .route('/users/search/:username/:password')
+    .route('/users/search')
     .get(UserController.readUsersByUsernameAndPassword);
 //create user
 router
     .route('/users')
-    .post(UserController.readUsersByUsernameAndPassword);
+    .post(UserController.createUser);
 //update user
 router
-    .route('/users/:username/:password')
-    .put(UserController.readUsersByUsernameAndPassword);
+    .route('/users')
+    .put(UserController.updateUser);
 // delete user
 router
-    .route('/users/:username/:password')
-    .delete(UserController.readUsersByUsernameAndPassword);
+    .route('/users/:userID')
+    .delete(UserController.deleteUser);
 export default router;
