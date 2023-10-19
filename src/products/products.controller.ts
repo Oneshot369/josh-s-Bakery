@@ -20,6 +20,22 @@ export const readAllProducts: RequestHandler =async (req:Request, res: Response)
     }
 }
 
+export const readByProductId: RequestHandler =async (req:Request, res: Response) => 
+{
+    try{
+        let albums = await  ProductsDAO.getProductByID(req.params.productID)
+        res.status(200).json(
+            albums
+        );
+    }
+    catch(error){
+        console.error("products.controller|readAllProducts|ERROR", error);
+        res.status(500).json({
+            message:'there was an Error when reading all the Products'
+        });
+    }
+}
+
 export const searchProductsByName: RequestHandler =async (req:Request, res: Response) => 
 {
     try{

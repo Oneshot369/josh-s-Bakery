@@ -28,6 +28,29 @@ export const readUsers: RequestHandler =async (req:Request, res: Response) =>
     }
 }
 
+export const readUsersbyID: RequestHandler =async (req:Request, res: Response) =>
+{
+    try{
+        //read all the users
+        let users = await UserDAO.readByIdUsers(req.params.userID);
+        //also get the cart of the user
+        await getCart(users, res);
+        //send the results back
+        res.status(200).json(
+            {
+                users
+            }
+        );
+    }
+    //catch error if something happens
+    catch(error){
+        console.error("users.controller|readUsers|ERROR", error);
+        res.status(500).json({
+            message:'there was an Error when reading all the Users'
+        });
+    }
+}
+
 export const readUsersByUsernameAndPassword: RequestHandler =async (req:Request, res: Response) => 
 {
     try{
@@ -141,3 +164,5 @@ export const addToCart: RequestHandler =async (req:Request, res: Response) =>
         });
     }
 }
+
+

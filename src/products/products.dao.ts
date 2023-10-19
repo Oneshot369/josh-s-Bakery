@@ -7,6 +7,10 @@ export const readAllProducts = async () => {
     return execute<Product[]>(productQueries.readAllProducts, []);
 };
 
+export const readProductById = async (productId: string) => {
+    return execute<Product[]>(productQueries.readAllProducts, []);
+};
+
 export const searchForProducts =async (searchTerm: string) => {
     return execute<Product[]>(productQueries.searchForProducts, [searchTerm])
 }

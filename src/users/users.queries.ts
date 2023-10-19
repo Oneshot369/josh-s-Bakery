@@ -1,6 +1,9 @@
 export const userQueries ={
     readAllUsers:
         `SELECT * FROM users`,
+    readUsersByID:
+        `SELECT * FROM users
+        WHERE ID = ?`,
     searchForUser:
         `SELECT * FROM users 
         Where users.Username =? 
@@ -16,7 +19,7 @@ export const userQueries ={
     deleteUser:
         `DELETE FROM users WHERE users.ID = ?`,
     getCart:
-        `SELECT products.ID, products.Name, products.Calories, products.Ingredients, products.Price, cart.Qty 
+        `SELECT products.ID, products.Name, products.Calories, products.Ingredients, products.Price 
         FROM products 
         JOIN cart ON products.id = cart.ProductID 
         JOIN users ON users.id = cart.UserID 

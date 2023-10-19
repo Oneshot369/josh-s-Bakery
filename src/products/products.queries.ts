@@ -1,6 +1,9 @@
 export const productQueries ={
     readAllProducts:
         `SELECT * FROM products`,
+    readProductByID:
+        `SELECT * FROM products
+        WHERE ID = ?`,
     searchForProducts:
         `SELECT * FROM products 
         Where products.Name 

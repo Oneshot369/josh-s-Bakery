@@ -8,6 +8,10 @@ export const readAllUsers = async () => {
     return execute<User[]>(userQueries.readAllUsers, []);
 };
 
+export const readByIdUsers = async (userId: string) => {
+    return execute<User[]>(userQueries.readUsersByID, [userId]);
+};
+
 export const searchForUser =async (username: string, password: string) => {
     return execute<User[]>(userQueries.searchForUser, [username, password])
 }
@@ -43,3 +47,5 @@ export const getCart =async (productID: string) => {
         productID 
     ]);
 }
+
+

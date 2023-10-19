@@ -6,7 +6,11 @@ const router = Router();
 router
     .route('/users')
     .get(UserController.readUsers);
-//get one user
+//get all users by user ID
+router
+    .route('/users/:userID')
+    .get(UserController.readUsersbyID);
+//get one user by username and password
 router
     .route('/users/login')
     .get(UserController.readUsersByUsernameAndPassword);

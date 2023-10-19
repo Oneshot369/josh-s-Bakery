@@ -6,6 +6,9 @@ const router = Router();
 router
     .route('/products')
     .get(ProductController.readAllProducts)
+router
+    .route('/products/:productID')
+    .get(ProductController.readByProductId)
 
 router
     .route('/products/:search')
