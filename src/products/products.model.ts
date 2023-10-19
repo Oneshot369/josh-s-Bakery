@@ -1,6 +1,6 @@
 
 export interface Product{
-    productId: number,
+    ID: number,
     name: string,
     calories: number,
     ingredients: string,

@@ -85,16 +85,3 @@ export const deleteProduct: RequestHandler =async (req:Request, res: Response) =
         });
     }
 }
-
-export const getCart: RequestHandler =async (req:Request, res: Response) => 
-{
-    try{
-        //get all the products for a cart associated with our user 
-    }
-    catch(error){
-        console.error("product.controller|getCart|ERROR", error);
-        res.status(500).json({
-            message:'there was an Error when getting the cart'
-        });
-    }
-} 

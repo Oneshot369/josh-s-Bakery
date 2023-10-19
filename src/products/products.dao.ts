@@ -28,11 +28,16 @@ export const updateProduct =async (reqBody: Product) => {
         reqBody.ingredients,
         reqBody.price,
         reqBody.qty,
-        reqBody.productId 
+        reqBody.ID 
     ]);
 }
 export const deleteProduct =async (productID: string) => {
     return execute<OkPacket>(productQueries.deleteProduct, [
+        productID 
+    ]);
+}
+export const getProductByID = async (productID: string) => {
+    return execute<OkPacket>(productQueries.getById, [
         productID 
     ]);
 }

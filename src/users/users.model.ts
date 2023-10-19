@@ -1,7 +1,7 @@
 import { Product } from "../products/products.model";
 
 export interface User{
-    userID: number;
+    ID: number;
     firstName: string;
     lastName: string;
     email: string;

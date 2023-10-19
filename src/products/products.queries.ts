@@ -12,5 +12,8 @@ export const productQueries ={
          SET Name=?, Calories=?, Ingredients=?, Price=?, Qty=?
          WHERE ID=?`,
     deleteProduct:
-        `DELETE FROM products WHERE products.ID = ?`
+        `DELETE FROM products WHERE products.ID = ?`,
+    getById:
+        `SELECT * FROM products
+        WHERE products.ID=?`
 }

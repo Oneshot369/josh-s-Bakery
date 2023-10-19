@@ -8,7 +8,7 @@ router
     .get(UserController.readUsers);
 //get one user
 router
-    .route('/users/search')
+    .route('/users/login')
     .get(UserController.readUsersByUsernameAndPassword);
 //create user
 router
