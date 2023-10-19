@@ -8,7 +8,7 @@ router
     .get(UserController.readUsers);
 //get all users by user ID
 router
-    .route('/users/byI/:userID')
+    .route('/users/byID/:userID')
     .get(UserController.readUsersbyID);
 //get one user by username and password
 router
@@ -30,4 +30,8 @@ router
 router
     .route('/cart/:userID/:productID')
     .put(UserController.addToCart);
+//remove from the cart    
+router
+    .route('/cart/:userID/:productID')
+    .delete(UserController.removeFromCart);
 export default router;

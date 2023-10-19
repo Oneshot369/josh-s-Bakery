@@ -56,3 +56,10 @@ export const addToCart =async (userID: number, productID: number) => {
        productID
     ]);
 }
+
+export const removeFromCart =async (userID: number, productID: number) => {
+    return execute<OkPacket>(userQueries.removeFromCart, [
+       productID,
+       userID
+    ]);
+}

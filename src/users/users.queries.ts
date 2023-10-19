@@ -25,5 +25,7 @@ export const userQueries ={
         JOIN users ON users.id = cart.UserID 
         WHERE cart.UserID = ?`,
     addToCart:
-        `INSERT INTO cart (UserID, ProductID) VALUES (?, ?)`
+        `INSERT INTO cart (UserID, ProductID) VALUES (?, ?)`,
+    removeFromCart:
+        `DELETE FROM cart WHERE ProductID = ? AND UserID = ? LIMIT 1`
 }
