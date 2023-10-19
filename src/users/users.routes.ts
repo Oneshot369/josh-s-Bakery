@@ -8,7 +8,7 @@ router
     .get(UserController.readUsers);
 //get all users by user ID
 router
-    .route('/users/byID/:userID')
+    .route('/users/byI/:userID')
     .get(UserController.readUsersbyID);
 //get one user by username and password
 router

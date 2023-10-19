@@ -162,21 +162,23 @@ export const addToCart: RequestHandler =async (req:Request, res: Response) =>
                 message:'there was an Error adding to cart'
             });
         }
-        console.log("\n\n")
-        console.log(user[0].ID)
-        console.log(product[0].ID)
-        console.log("\n\n")
-        //if its not then add the product
-        let result = UserDAO.addToCart(user[0].ID, product[0].ID);
-
-        //now decrease the qyt and update the product
-        // product.qty = product.qty-1;
-        // ProductDAO.updateProduct(product);
-
-        //return the OkPacket
-        res.status(200).json(
-            result
-        );
+        else{
+            console.log("\n\n")
+            console.log(user[0].ID)
+            console.log(product[0].ID)
+            console.log("\n\n")
+            //if its not then add the product
+            let result = UserDAO.addToCart(user[0].ID, product[0].ID);
+    
+            //now decrease the qyt and update the product
+            product[0].Qty = product[0].Qty-1;
+            ProductDAO.updateProduct(product[0]);
+    
+            //return the OkPacket
+            res.status(200).json(
+                result
+            );
+        }
     }
     catch(error){
         console.error("users.controller|addToCart|ERROR", error);
