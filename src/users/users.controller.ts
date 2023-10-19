@@ -55,7 +55,7 @@ export const readUsersByUsernameAndPassword: RequestHandler =async (req:Request,
 {
     try{
         // get one user by username and password
-        let user = await UserDAO.searchForUser(req.body.username, req.body.password);
+        let user = await UserDAO.searchForUser(req.body.Username, req.body.Password);
         //also get the cart of the user
         await getCart(user, res);
         // return the user if there is one (nothing if there was not a match)
@@ -136,7 +136,7 @@ async function getCart(users: User[], res: Response<any, Record<string, any>>)
         try{
             console.log(users);
             const products = await UserDAO.getCart(users[i].ID.toString());
-            users[i].cart = products;
+            users[i].Cart = products;
 
         } catch (error){
             console.error('users.controller|getCart|ERROR', error);
@@ -150,17 +150,38 @@ async function getCart(users: User[], res: Response<any, Record<string, any>>)
 export const addToCart: RequestHandler =async (req:Request, res: Response) => 
 {
     try{
-        //delete one user
-        let result = await UserDAO.deleteUser(req.params.userID)
+        let userID = req.params.userID
+        let productID = req.params.productID
+
+        let user = await UserDAO.readByIdUsers(userID);
+        let product = await ProductDAO.getProductByID(productID);
+        //if qty below or at zero dont add
+        if(product[0].Qty <=0){
+            console.error("users.controller|addToCart|qyt at 0");
+            res.status(500).json({
+                message:'there was an Error adding to cart'
+            });
+        }
+        console.log("\n\n")
+        console.log(user[0].ID)
+        console.log(product[0].ID)
+        console.log("\n\n")
+        //if its not then add the product
+        let result = UserDAO.addToCart(user[0].ID, product[0].ID);
+
+        //now decrease the qyt and update the product
+        // product.qty = product.qty-1;
+        // ProductDAO.updateProduct(product);
+
         //return the OkPacket
         res.status(200).json(
             result
         );
     }
     catch(error){
-        console.error("users.controller|delete|ERROR", error);
+        console.error("users.controller|addToCart|ERROR", error);
         res.status(500).json({
-            message:'there was an Error when Deleting User'
+            message:'there was an Error when adding to cart'
         });
     }
 }

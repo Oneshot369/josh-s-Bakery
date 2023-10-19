@@ -71,7 +71,8 @@ export const createProduct: RequestHandler =async (req:Request, res: Response) =
 export const updateProduct: RequestHandler =async (req:Request, res: Response) => 
 {
     try{
-        const okPacket: OkPacket = await ProductsDAO.updateProduct(req.body);
+        let p: Product = req.body;
+        const okPacket: OkPacket = await ProductsDAO.updateProduct(p);
         console.log(okPacket);
         res.status(200).json(
             okPacket

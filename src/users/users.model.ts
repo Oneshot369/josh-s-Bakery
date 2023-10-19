@@ -2,10 +2,10 @@ import { Product } from "../products/products.model";
 
 export interface User{
     ID: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    username: string;
-    password: string;
-    cart?: Product[];
+    FirstName: string;
+    LastName: string;
+    Email: string;
+    Username: string;
+    Password: string;
+    Cart?: Product[];
 }

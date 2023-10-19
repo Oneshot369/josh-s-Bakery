@@ -13,26 +13,28 @@ export const readByIdUsers = async (userId: string) => {
 };
 
 export const searchForUser =async (username: string, password: string) => {
+    console.log(username)
+    console.log(password)
     return execute<User[]>(userQueries.searchForUser, [username, password])
 }
 
 export const createUser =async (reqBody: User) => {
     return execute<OkPacket>(userQueries.createNewUser, [
-        reqBody.firstName,
-        reqBody.lastName,
-        reqBody.email,
-        reqBody.username,
-        reqBody.password 
+        reqBody.FirstName,
+        reqBody.LastName,
+        reqBody.Email,
+        reqBody.Username,
+        reqBody.Password 
     ]);
 }
 
 export const updateUser =async (reqBody: User) => {
     return execute<OkPacket>(userQueries.updateExistingUser, [
-        reqBody.firstName,
-        reqBody.lastName,
-        reqBody.email,
-        reqBody.username,
-        reqBody.password,
+        reqBody.FirstName,
+        reqBody.LastName,
+        reqBody.Email,
+        reqBody.Username,
+        reqBody.Password,
         reqBody.ID 
     ]);
 }
@@ -48,4 +50,9 @@ export const getCart =async (productID: string) => {
     ]);
 }
 
-
+export const addToCart =async (userID: number, productID: number) => {
+    return execute<OkPacket>(userQueries.addToCart, [
+       userID,
+       productID
+    ]);
+}

@@ -23,5 +23,7 @@ export const userQueries ={
         FROM products 
         JOIN cart ON products.id = cart.ProductID 
         JOIN users ON users.id = cart.UserID 
-        WHERE cart.UserID = ?`
+        WHERE cart.UserID = ?`,
+    addToCart:
+        `INSERT INTO cart (UserID, ProductID) VALUES (?, ?)`
 }

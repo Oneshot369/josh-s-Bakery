@@ -7,7 +7,7 @@ router
     .route('/products')
     .get(ProductController.readAllProducts)
 router
-    .route('/products/:productID')
+    .route('/products/byID/:productID')
     .get(ProductController.readByProductId)
 
 router
