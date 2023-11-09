@@ -13,7 +13,7 @@ router
 //get one user by username and password
 router
     .route('/users/login')
-    .get(UserController.readUsersByUsernameAndPassword);
+    .post(UserController.readUsersByUsernameAndPassword);
 //create user
 router
     .route('/users')

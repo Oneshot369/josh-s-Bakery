@@ -14,9 +14,7 @@ export const readUsers: RequestHandler =async (req:Request, res: Response) =>
         await getCart(users, res);
         //send the results back
         res.status(200).json(
-            {
-                users
-            }
+            users
         );
     }
     //catch error if something happens
